@@ -19,7 +19,7 @@ html, body {
 }
 
 .bottom-buttons{
-  position: absolute;
+  position: fixed;
   bottom:50px;
   margin-right: auto;
   margin-left: auto;
@@ -40,4 +40,23 @@ html, body {
   background-color: #EBEBEB;
   margin: 1em;
   padding: 1em;
+}
+
+.droppable-highlight{
+  border: 1px solid #EBEBEB;
+  background-color: #fff !important;
+}
+
+.generated-query{
+  padding: 1em;
+}
+
+.and-selector,.or-selector,.location-selector,.browser-selector,
+.os-selector,.day-selector,.visitor-type-selector,.mobile-selector,
+.include-section,.exclude-section{
+  border: 1px solid #bdbdbd ;
+  padding: 1em;
+  margin: 1em;
+  background-color:  #EBEBEB;
+
 }
