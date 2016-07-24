@@ -5,7 +5,8 @@ $(function () {
         $(this).draggable({
             containment: $(this).parent().parent(),
             scope: $(this).parent().parent().parent().prop("class"),
-            cancel: false, helper: "original", revert: "invalid"
+            cancel: false, helper: "original", revert: "invalid",
+            connectToSortable: ".mdl-grid>div",
         });
     });
 
@@ -37,12 +38,12 @@ $(function () {
         $(this).droppable({
             scope: $(this).parent().parent().prop("class"),
             activeClass: "droppable-highlight",
-            drop: function (event, ui) {
-                // $(ui.draggable).remove();
-                  var temp=  $(ui.draggable).remove().css({top:"0px",left:"0px"});
-                // ui.draggable.appendTo($(this)).fadeIn();
-                $(this).append(temp).animate({duration:600});
-            }
+            // drop: function (event, ui) {
+            //     // $(ui.draggable).remove();
+            //       var temp=  $(ui.draggable).remove().css({top:"0px",left:"0px"});
+            //     // ui.draggable.appendTo($(this)).fadeIn();
+            //     $(this).append(temp).animate({duration:600});
+            // }
         });
     });
     $(".include-section").each(function () {
@@ -52,5 +53,18 @@ $(function () {
         });
     });
 
+    $(".query-region .exclude-section,.query-region .include-section").each(function () {
+        $(this).sortable({
+            revert: true,
+            containment: $(this).parent(),
+            items:">*:not(:first-child)"
+        });
+    });
 
+    $(".generated-query").parent().on( "drop", function( event, ui ) {
+        var queryString=parseDomForQuery($(this));
+    } );
+    function parseDomForQuery(component){
+        
+    }
 });
