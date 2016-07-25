@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-html, body {
+html,
+body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-.bottom-buttons{
+.bottom-buttons {
   position: fixed;
-  bottom:50px;
+  bottom: 50px;
   margin-right: auto;
   margin-left: auto;
   left: 50%;
@@ -28,35 +29,42 @@ html, body {
   z-index: 9999;
 }
 
-.bottom-buttons > button{
+.bottom-buttons> button {
   margin: 10px;
 }
 
-.mdl-card{
+.mdl-card {
   width: 100%;
 }
 
-.query-region{
+.query-region {
   background-color: #EBEBEB;
   margin: 1em;
   padding: 1em;
 }
 
-.droppable-highlight{
+.droppable-highlight {
   border: 1px solid #EBEBEB;
   background-color: #fff !important;
 }
 
-.generated-query{
+.generated-query {
   padding: 1em;
 }
 
-.and-selector,.or-selector,.location-selector,.browser-selector,
-.os-selector,.day-selector,.visitor-type-selector,.mobile-selector,
-.include-section,.exclude-section{
-  border: 1px solid #bdbdbd ;
+.and-selector,
+.or-selector,
+.location-selector,
+.browser-selector,
+.os-selector,
+.day-selector,
+.visitor-type-selector,
+.mobile-selector,
+.include-section,
+.exclude-section {
+  border: 1px solid #bdbdbd;
   padding: 1em;
   margin: 1em;
-  background-color:  #EBEBEB;
-
+  background-color: #EBEBEB;
+  overflow: auto;
 }
