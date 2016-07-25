@@ -1,5 +1,6 @@
 $(function() {
 
+    var componentTemplates = templates;
 
     $('.query-region .draggable-btn').each(function() {
         $(this).draggable({
@@ -24,11 +25,9 @@ $(function() {
         scope: "draggable-logic"
     });
 
-    $(".query-region .and-selector,.query-region .or-selector").each(function() {
-        $(this).droppable({
-            scope: "draggable-logic",
-            activeClass: "droppable-highlight"
-        });
+    $(".query-region").droppable({
+        scope: "draggable-logic",
+        activeClass: "droppable-highlight"
     });
 
     $(".exclude-section").each(function() {
@@ -53,8 +52,23 @@ $(function() {
     });
 
     $(".generated-query").parent().on("drop", function(event, ui) {
+
+        $(event.target).append($(templates.orTemplate));
+
         var queryString = parseDomForQuery(this);
         $(".generated-query >div:last-child").html(queryString);
+
+        if (!$(".query-region").droppable("option", "disabled")) {
+            $(".query-region").droppable("option", "disabled", true);
+
+            $(".query-region .and-selector,.query-region .or-selector").each(function() {
+                $(this).droppable({
+                    disabled: false,
+                    scope: "draggable-logic",
+                    activeClass: "droppable-highlight"
+                });
+            });
+        }
     });
 
 
@@ -152,5 +166,5 @@ $(function() {
         return optionsArray;
     }
 
-    
+
 });
