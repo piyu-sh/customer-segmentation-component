@@ -2,17 +2,6 @@ $(function() {
 
     var componentTemplates = templates;
 
-    $('.query-region .draggable-btn').each(function() {
-        $(this).draggable({
-            containment: $(this).parent().parent(),
-            scope: $(this).parent().parent().parent().prop("class"),
-            cancel: false,
-            helper: "original",
-            revert: "invalid",
-            connectToSortable: ".mdl-grid>div",
-        });
-    });
-
     $(".query-selectors > .draggable-segment ").draggable({
         cancel: false,
         helper: "clone",
@@ -22,55 +11,102 @@ $(function() {
         cancel: false,
         helper: "clone",
         revert: "invalid",
-        scope: "draggable-logic"
+        // scope: "draggable-logic"
     });
 
     $(".query-region").droppable({
-        scope: "draggable-logic",
+        accept: ".query-selectors > .draggable-logic",
         activeClass: "droppable-highlight"
     });
 
-    $(".exclude-section").each(function() {
-        $(this).droppable({
-            scope: $(this).parent().parent().prop("class"),
-            activeClass: "droppable-highlight",
-        });
-    });
-    $(".include-section").each(function() {
-        $(this).droppable({
-            scope: $(this).parent().parent().prop("class"),
-            activeClass: "droppable-highlight"
-        });
-    });
 
-    $(".query-region .exclude-section,.query-region .include-section").each(function() {
-        $(this).sortable({
-            revert: true,
-            containment: $(this).parent(),
-            items: ">*:not(:first-child)"
-        });
-    });
+
 
     $(".generated-query").parent().on("drop", function(event, ui) {
 
-        $(event.target).append($(templates.orTemplate));
+        $(event.target).append(getTemplate(ui.draggable));
 
         var queryString = parseDomForQuery(this);
         $(".generated-query >div:last-child").html(queryString);
 
         if (!$(".query-region").droppable("option", "disabled")) {
             $(".query-region").droppable("option", "disabled", true);
-
-            $(".query-region .and-selector,.query-region .or-selector").each(function() {
-                $(this).droppable({
-                    disabled: false,
-                    scope: "draggable-logic",
-                    activeClass: "droppable-highlight"
-                });
-            });
         }
+
+        $(".query-region .and-selector,.query-region .or-selector").each(function() {
+            $(this).droppable({
+                disabled: false,
+                greedy: true,
+                // scope: "draggable-logic",
+                activeClass: "droppable-highlight"
+            });
+        });
+
+        $('.query-region .draggable-btn').each(function() {
+            $(this).draggable({
+                containment: $(this).parent().parent(),
+                scope: $(this).parent().parent().parent().prop("class"),
+                cancel: false,
+                helper: "original",
+                revert: "invalid",
+                connectToSortable: ".mdl-grid>div",
+            });
+        });
+
+        $(".exclude-section").each(function() {
+            $(this).droppable({
+                scope: $(this).parent().parent().prop("class"),
+                activeClass: "droppable-highlight",
+            });
+        });
+        $(".include-section").each(function() {
+            $(this).droppable({
+                scope: $(this).parent().parent().prop("class"),
+                activeClass: "droppable-highlight"
+            });
+        });
+
+        $(".query-region .exclude-section,.query-region .include-section").each(function() {
+            $(this).sortable({
+                revert: true,
+                containment: $(this).parent(),
+                items: ">*:not(:first-child)"
+            });
+        });
+
     });
 
+
+    function getTemplate(component) {
+        var templateCode;
+        switch ($(component).html()) {
+            case "And":
+                templateCode = templates.andTemplate;
+                break;
+            case "Or":
+                templateCode = templates.orTemplate;
+                break;
+            case "Location":
+                templateCode = templates.locationTemplate;
+                break;
+            case "Browser":
+                templateCode = templates.browserTemplate;
+                break;
+            case "OS":
+                templateCode = templates.osTemplate;
+                break;
+            case "Day":
+                templateCode = templates.dayTemplate;
+                break;
+            case "Visiter type":
+                templateCode = templates.visiterTemplate;
+                break;
+            case "Mobile":
+                templateCode = templates.mobileTemplate;
+                break;
+        }
+        return templateCode
+    }
 
     function parseDomForQuery(component) {
         var queryString = "";
