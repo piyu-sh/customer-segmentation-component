@@ -1,6 +1,6 @@
 $(function() {
 
-    var componentTemplates = templates;
+    var componentTemplates = templates; // from templates.js
 
     $(".query-selectors > .draggable-segment ").draggable({
         cancel: false,
@@ -13,7 +13,6 @@ $(function() {
         helper: "clone",
         revert: "invalid",
         scroll: true
-            // scope: "draggable-logic"
     });
 
     $(".query-region").droppable({
@@ -40,18 +39,14 @@ $(function() {
         $(".query-region .exclude-section,.query-region .include-section").each(function() {
 
             $(this).sortable({
-                revert: true,
                 containment: $(this).parent(),
                 items: ">*:not(:first-child)"
             });
         });
 
-
         $(".query-region .and-selector,.query-region .or-selector").each(function() {
-            // if (!$(this).droppable("option", "disabled"))
             $(this).droppable({
                 disabled: false,
-                // scope: "draggable-logic",
                 activeClass: "droppable-highlight"
             });
         });
@@ -61,17 +56,17 @@ $(function() {
             $(this).draggable({
                 containment: $(this).parent().parent(),
                 scope: $(this).parent().parent().parent().prop("class"),
-                cancel: false,
+                cancel: "",
                 helper: "original",
                 revert: "invalid",
-                connectToSortable: ".mdl-grid>div",
+                connectToSortable: ".mdl-grid>div"
             });
         });
 
         $(".exclude-section").each(function() {
             $(this).droppable({
                 scope: $(this).parent().parent().prop("class"),
-                activeClass: "droppable-highlight",
+                activeClass: "droppable-highlight"
             });
         });
         $(".include-section").each(function() {
@@ -126,7 +121,7 @@ $(function() {
             $(compChildren).each(function(index) {
                 if (isSegmentSelector(this)) {
                     if (appendLogic) {
-                        queryString += " " + selectorType(component) + " "; //check for last occurence and add "'"
+                        queryString += " " + selectorType(component) + " "; 
                     }
                     appendLogic = true;
                     queryString += "'" + selectorType(this) + "=";
@@ -145,7 +140,7 @@ $(function() {
                 } else {
                     if (isLogicSelector(this)) {
                         if (appendLogic) {
-                            queryString += " " + selectorType(component) + " "; //check for last occurence and add "'"
+                            queryString += " " + selectorType(component) + " "; 
                         }
                         appendLogic = true;
                     }

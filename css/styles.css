@@ -66,5 +66,5 @@ body {
   padding: 1em;
   margin: 1em;
   background-color: #EBEBEB;
-  overflow: auto;
+  /*overflow: auto;*/
 }
