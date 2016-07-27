@@ -62,9 +62,26 @@ body {
 .mobile-selector,
 .include-section,
 .exclude-section {
-  border: 1px solid #bdbdbd;
-  padding: 1em;
-  margin: 1em;
+  /* border: 1px solid #bdbdbd; */
+  padding: 4px;
   background-color: #EBEBEB;
-  /*overflow: auto;*/
+  /* overflow: auto; */
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+.and-selector,
+.or-selector,
+.location-selector,
+.browser-selector,
+.os-selector,
+.day-selector,
+.visitor-type-selector,
+.mobile-selector{
+    margin: 8px;
+}
+
+.include-section,
+.exclude-section {
+  margin: 0 auto;
 }
