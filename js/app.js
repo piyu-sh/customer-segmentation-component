@@ -5,13 +5,15 @@ $(function() {
     $(".query-selectors > .draggable-segment ").draggable({
         cancel: false,
         helper: "clone",
-        revert: "invalid"
+        revert: "invalid",
+        scroll: true
     });
     $(".query-selectors > .draggable-logic ").draggable({
         cancel: false,
         helper: "clone",
         revert: "invalid",
-        // scope: "draggable-logic"
+        scroll: true
+            // scope: "draggable-logic"
     });
 
     $(".query-region").droppable({
@@ -24,7 +26,9 @@ $(function() {
 
     $(".generated-query").parent().on("drop", function(event, ui) {
 
-        $(event.target).append(getTemplate(ui.draggable));
+        if (!$(ui.draggable).hasClass("draggable-segment-option")) {
+            $(event.target).append(getTemplate(ui.draggable));
+        }
 
         var queryString = parseDomForQuery(this);
         $(".generated-query >div:last-child").html(queryString);
@@ -33,14 +37,25 @@ $(function() {
             $(".query-region").droppable("option", "disabled", true);
         }
 
+        $(".query-region .exclude-section,.query-region .include-section").each(function() {
+
+            $(this).sortable({
+                revert: true,
+                containment: $(this).parent(),
+                items: ">*:not(:first-child)"
+            });
+        });
+
+
         $(".query-region .and-selector,.query-region .or-selector").each(function() {
+            // if (!$(this).droppable("option", "disabled"))
             $(this).droppable({
                 disabled: false,
-                greedy: true,
                 // scope: "draggable-logic",
                 activeClass: "droppable-highlight"
             });
         });
+
 
         $('.query-region .draggable-btn').each(function() {
             $(this).draggable({
@@ -63,14 +78,6 @@ $(function() {
             $(this).droppable({
                 scope: $(this).parent().parent().prop("class"),
                 activeClass: "droppable-highlight"
-            });
-        });
-
-        $(".query-region .exclude-section,.query-region .include-section").each(function() {
-            $(this).sortable({
-                revert: true,
-                containment: $(this).parent(),
-                items: ">*:not(:first-child)"
             });
         });
 
