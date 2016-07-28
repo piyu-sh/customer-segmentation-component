@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/material.indigo-blue.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/dialog-polyfill.css">
 
 </head>
 
@@ -41,43 +42,37 @@
     <main class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid ">
         <div class="mdl-cell--10-col mdl-cell--1-offset ">
-          <div class="mdl-card mdl-shadow--2dp">
+          <div id="card-container" class="mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
               <h2 class="mdl-card__title-text">Segment Selection</h2>
             </div>
             <div class="mdl-card__supporting-text">
-              Drag and Drop the selectors into query region...
-            </div>
-            <div class="mdl-card__actions mdl-card--border ">
-              <div class="query-selectors">
-                <button class="draggable-btn draggable-logic mdl-button mdl-js-button mdl-button--colored">And</button>
-                <button class="draggable-btn draggable-logic mdl-button mdl-js-button mdl-button--colored">Or</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Location</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Browser</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">OS</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Day</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Visiter type</button>
-                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Mobile</button>
-              </div>
-              <div class="query-region droppable-main-region mdl-color-text--grey-500">
-                
-              </div>
-              <div class="mdl-card generated-query">
-                <div class="mdl-card__title">Generated query...</div>
-                <div class="mdl-card__actions mdl-card--border mdl-color-text--grey-500">[ ]</div>
-              </div>
+              Add, Combine and Remove Customer Segments...
             </div>
           </div>
         </div>
       </div>
-      <div class="bottom-buttons">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> Add </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised"> Remove </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised"> Combine </button>
+      <div class="mdl-grid saved-queries">
+      </div>
+      <div class="top-buttons">
+        <button id="add-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> Add </button>
+        <button id="remove-btn" class="mdl-button mdl-js-button mdl-button--raised"> Remove </button>
+        <button id="combine-btn" class="mdl-button mdl-js-button mdl-button--raised"> Combine </button>
       </div>
     </main>
   </div>
+  <dialog id="info-dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Information</h4>
+    <div class="mdl-dialog__content">
+      <p>
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">Ok</button>
+    </div>
+  </dialog>
   <script src="js/jquery.js"></script>
+  <script src="js/dialog-polyfill.js"></script>    
   <script src="js/jquery-ui.js"></script>
   <script src="js/material.min.js"></script>
   <script src="js/templates.js"></script>

@@ -1,4 +1,42 @@
 var templates = (function() {
+
+
+    var mainCardDefaultTemplate=`<div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Segment Selection</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Add, Combine and Remove Customer Segments...
+            </div>`;
+
+    var mainCardTemplate = `<div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Segment Selection</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Drag and Drop the selectors into query region...
+            </div>
+            <div class="mdl-card__actions mdl-card--border ">
+              <div class="query-selectors">
+                <button class="draggable-btn draggable-logic mdl-button mdl-js-button mdl-button--colored">And</button>
+                <button class="draggable-btn draggable-logic mdl-button mdl-js-button mdl-button--colored">Or</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Location</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Browser</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">OS</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Day</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Visitor type</button>
+                <button class="draggable-btn draggable-segment mdl-button mdl-js-button mdl-color-text--grey-600">Mobile</button>
+              </div>
+              <div class="query-region droppable-main-region mdl-color-text--grey-500">
+                
+              </div>
+              <div class="mdl-card generated-query">
+                <div class="mdl-card__title">Generated query...</div>
+                <div class="mdl-card__actions mdl-card--border mdl-color-text--grey-500">[ ]</div>
+              </div>
+              <div class="mdl-cell--2-col mdl-cell--5-offset">
+                <button id="save-btn" class="mdl-button mdl-js-button mdl-button--raised ">Save</button>
+              </div>
+            </div>`;
+
     var andTemplate = `<div class="and-selector">
     <span>And</span>
 </div>`;
@@ -90,7 +128,7 @@ var templates = (function() {
         </div>
     </div>
 </div>`;
-    var visitorTemplate = `<div class="visiter-type-selector">
+    var visitorTemplate = `<div class="visitor-type-selector">
     <span>Visitor type</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -112,8 +150,8 @@ var templates = (function() {
         browserTemplate: browserTemplate,
         visitorTemplate: visitorTemplate,
         osTemplate: osTemplate,
-        mobileTemplate: mobileTemplate
+        mobileTemplate: mobileTemplate,
+        mainCardTemplate:mainCardTemplate,
+        mainCardDefaultTemplate:mainCardDefaultTemplate
     };
 })();
-
-

@@ -19,21 +19,19 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-.bottom-buttons {
+.top-buttons {
   position: fixed;
-  bottom: 50px;
-  margin-right: auto;
-  margin-left: auto;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 9999;
 }
 
-.bottom-buttons> button {
+.top-buttons> button {
   margin: 10px;
 }
 
-.mdl-card {
+#card-container.mdl-card, .query-region+.generated-query.mdl-card {
   width: 100%;
 }
 
@@ -83,5 +81,9 @@ body {
 
 .include-section,
 .exclude-section {
+  margin: 0 auto;
+}
+
+.saved-queries .generated-query{
   margin: 0 auto;
 }
