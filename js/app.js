@@ -51,14 +51,72 @@ $(function() {
 
     $("#combine-btn").click(function(e) {
         var $queryList = $("div.saved-queries .generated-query.mdl-shadow--16dp>div.mdl-card__actions");
-        var combinedQuery="";
-        $queryList.each(function(key,value){
-
+        var combinedQuery = "";
+        var queryTreeList = [];
+        $queryList.each(function(key, value) {
+            queryTreeList[key] = createQueryTree($(value).html());
         });
     });
 
 
+    function createQueryTree(queryString) {
+        var queryTree;
+        for (var i = 0; i < queryString.length; i++) {
+            var nextTokenInfo=nextTokenAndRemains(queryString);
+            var nextToken=nextTokenInfo.nextToken;
+            var remainingString=nextTokenInfo.remainingString;
+            i=queryString.length-remainingString.length;
 
+            if(nextToken=="["){
+                queryTree.child.name="unknown"; 
+            }
+        }
+    }
+
+    function nextTokenAndRemains(str) {
+        var nextToken;
+        var remainingString;
+        var i = 0;
+        if (str[i] != " ") {
+            if (str[i] == "[") {
+                nextToken = "[";
+                remainingString = str.slice(i + 1);
+            } else if (str[i] == "]") {
+                nextToken = "]";
+                remainingString = str.slice(i + 1);
+            } else if (str[i] == "a") {
+                nextToken = "and";
+                remainingString = str.slice(i + 3);
+            } else if (str[i] == "o") {
+                if (str[i + 1] == "r") {
+                    nextToken = "or";
+                } else {
+                    nextToken = "os";
+                }
+                remainingString = str.slice(i + 2);
+            } else if (str[i] == "l") {
+                nextToken = "location";
+                remainingString = str.slice(i + 8);
+            } else if (str[i] == "b") {
+                nextToken = "browser";
+                remainingString = str.slice(i + 7);
+            } else if (str[i] == "d") {
+                nextToken = "day";
+                remainingString = str.slice(i + 3);
+            } else if (str[i] == "v") {
+                nextToken = "visitor-type";
+                remainingString = str.slice(i + 12);
+            } else if (str[i] == "m") {
+                nextToken = "mobile";
+                remainingString = str.slice(i + 6);
+            }
+        }
+
+        return {
+            nextToken: nextToken,
+            remainingString: remainingString
+        };
+    }
 
     function attachDragDropFunctionality() {
         $(".query-selectors > .draggable-segment ").draggable({
