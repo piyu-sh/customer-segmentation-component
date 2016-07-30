@@ -32,7 +32,7 @@ var templates = (function() {
                 <div class="mdl-card__title">Generated query...</div>
                 <div class="mdl-card__actions mdl-card--border mdl-color-text--grey-500">[ ]</div>
               </div>
-              <div class="mdl-cell--2-col mdl-cell--5-offset">
+              <div class="mdl-cell mdl-cell--2-col mdl-cell--5-offset">
                 <button id="save-btn" class="mdl-button mdl-js-button mdl-button--raised ">Save</button>
               </div>
             </div>`;

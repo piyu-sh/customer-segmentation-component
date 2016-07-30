@@ -19,16 +19,20 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.mdl-layout-title{
+  margin-top: 8px;
+}
+
 .top-buttons {
-  position: fixed;
-  top: 10%;
-  left: 50%;
+  /*position: fixed;*/
+  /*top: 10%;*/
+  /*left: 50%;
   transform: translate(-50%, 0);
-  z-index: 9999;
+  z-index: 9999;*/
 }
 
 .top-buttons> button {
-  margin: 10px;
+  margin-right: 10px;
 }
 
 #card-container.mdl-card, .query-region+.generated-query.mdl-card {
@@ -84,6 +88,12 @@ body {
   margin: 0 auto;
 }
 
-.saved-queries .generated-query{
-  margin: 0 auto;
+.saved-queries > div:nth-child(2n){
+  margin-left:0px;
+}
+
+@media (max-width:479px){
+  .saved-queries > div{
+  margin-left:0px;
+}
 }

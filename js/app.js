@@ -19,6 +19,7 @@ $(function() {
             attachDragDropFunctionality();
             $("#save-btn").click(function(e) {
                 var $saveCard=$("#card-container .generated-query");
+                $saveCard.addClass("mdl-cell mdl-cell--5-col mdl-cell--1-offset-desktop mdl-card generated-query mdl-shadow--2dp");
                 $("div.saved-queries").append($saveCard);
                 $("#card-container").html(componentTemplates.mainCardDefaultTemplate);
             });
