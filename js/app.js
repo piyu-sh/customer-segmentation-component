@@ -18,13 +18,43 @@ $(function() {
             $("#card-container").html(componentTemplates.mainCardTemplate);
             attachDragDropFunctionality();
             $("#save-btn").click(function(e) {
-                var $saveCard=$("#card-container .generated-query");
+                var $saveCard = $("#card-container .generated-query");
+                var $closeBtn = $("<div/>").addClass("close-btn");
+                $saveCard.prepend($closeBtn);
+                var $selectBtn = $("<span/>").addClass("select-btn");
+                $saveCard.prepend($selectBtn);
                 $saveCard.addClass("mdl-cell mdl-cell--5-col mdl-cell--1-offset-desktop mdl-card generated-query mdl-shadow--2dp");
-                $("div.saved-queries").append($saveCard);
+                $("div.saved-queries").prepend($saveCard);
                 $("#card-container").html(componentTemplates.mainCardDefaultTemplate);
+                $("div.saved-queries .generated-query .close-btn").click(function(e) {
+                    $(this).parent().remove();
+                    if ($("div.saved-queries .generated-query.mdl-shadow--16dp").length > 1) {
+                        $("#combine-btn").prop("disabled", false);
+                    } else {
+                        $("#combine-btn").prop("disabled", true);
+                    }
+                });
+                $("div.saved-queries .generated-query .select-btn").click(function(e) {
+                    e.stopImmediatePropagation();
+                    $(this).parent().toggleClass("mdl-shadow--16dp");
+                    if ($("div.saved-queries .generated-query.mdl-shadow--16dp").length > 1) {
+                        $("#combine-btn").prop("disabled", false);
+                    } else {
+                        $("#combine-btn").prop("disabled", true);
+                    }
+                });
+
             });
         }
 
+    });
+
+    $("#combine-btn").click(function(e) {
+        var $queryList = $("div.saved-queries .generated-query.mdl-shadow--16dp>div.mdl-card__actions");
+        var combinedQuery="";
+        $queryList.each(function(key,value){
+
+        });
     });
 
 
@@ -35,16 +65,19 @@ $(function() {
             cancel: false,
             helper: "clone",
             revert: "invalid",
-            scroll: true
+            scroll: true,
+            zIndex: 10000
         });
         $(".query-selectors > .draggable-logic ").draggable({
             cancel: false,
             helper: "clone",
             revert: "invalid",
-            scroll: true
+            scroll: true,
+            zIndex: 10000
         });
 
         $(".query-region").droppable({
+            disabled: false,
             accept: ".query-selectors > .draggable-logic",
             activeClass: "droppable-highlight"
         });
@@ -54,6 +87,7 @@ $(function() {
 
         $(".generated-query").parent().on("drop", function(event, ui) {
 
+            event.stopImmediatePropagation();
             if (!$(ui.draggable).hasClass("draggable-segment-option")) {
                 $(event.target).append(getTemplate(ui.draggable));
             }
@@ -75,6 +109,7 @@ $(function() {
 
             $(".query-region .and-selector,.query-region .or-selector").each(function() {
                 $(this).droppable({
+                    greedy: true,
                     disabled: false,
                     activeClass: "droppable-highlight"
                 });
@@ -105,6 +140,13 @@ $(function() {
                 });
             });
 
+            //remove on close button click
+            $(".query-region .close-btn").click(function(e) {
+                $(this).parent().remove();
+                attachDragDropFunctionality();
+                var queryString = parseDomForQuery($(".generated-query").parent()[0]);
+                $(".generated-query >div:last-child").html(queryString);
+            });
         });
 
 

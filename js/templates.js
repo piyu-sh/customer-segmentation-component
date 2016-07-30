@@ -38,14 +38,17 @@ var templates = (function() {
             </div>`;
 
     var andTemplate = `<div class="and-selector">
+    <div class="close-btn"></div>
     <span>And</span>
 </div>`;
 
     var orTemplate = `<div class="or-selector">
+    <div class="close-btn"></div>
     <span>Or</span>
 </div>`;
 
     var locationTemplate = `<div class="location-selector">
+    <div class="close-btn"></div>
     <span>Location</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -63,6 +66,7 @@ var templates = (function() {
     </div>
 </div>`;
     var dayTemplate = `<div class="day-selector">
+    <div class="close-btn"></div>
     <span>Day</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -81,6 +85,7 @@ var templates = (function() {
     </div>
 </div>`;
     var browserTemplate = `<div class="browser-selector">
+    <div class="close-btn"></div>
     <span>Browser</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -97,6 +102,7 @@ var templates = (function() {
     </div>
 </div>`;
     var mobileTemplate = `<div class="mobile-selector">
+    <div class="close-btn"></div>
     <span>Mobile</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -114,6 +120,7 @@ var templates = (function() {
     </div>
 </div>`;
     var osTemplate = `<div class="os-selector">
+    <div class="close-btn"></div>
     <span>OS</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">
@@ -129,6 +136,7 @@ var templates = (function() {
     </div>
 </div>`;
     var visitorTemplate = `<div class="visitor-type-selector">
+    <div class="close-btn"></div>
     <span>Visitor type</span>
     <div class="mdl-grid">
         <div class="mdl-cell--5-col include-section">

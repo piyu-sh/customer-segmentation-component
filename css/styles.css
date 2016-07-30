@@ -19,7 +19,7 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-.mdl-layout-title{
+.mdl-layout-title {
   margin-top: 8px;
 }
 
@@ -35,7 +35,8 @@ body {
   margin-right: 10px;
 }
 
-#card-container.mdl-card, .query-region+.generated-query.mdl-card {
+#card-container.mdl-card,
+.query-region+.generated-query.mdl-card {
   width: 100%;
 }
 
@@ -71,7 +72,6 @@ body {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-
 .and-selector,
 .or-selector,
 .location-selector,
@@ -79,8 +79,9 @@ body {
 .os-selector,
 .day-selector,
 .visitor-type-selector,
-.mobile-selector{
-    margin: 8px;
+.mobile-selector {
+  margin: 8px;
+  position: relative;
 }
 
 .include-section,
@@ -88,12 +89,93 @@ body {
   margin: 0 auto;
 }
 
-.saved-queries > div:nth-child(2n){
-  margin-left:0px;
+.saved-queries> div:nth-child(2n) {
+  margin-left: 0px;
 }
 
-@media (max-width:479px){
-  .saved-queries > div{
-  margin-left:0px;
+@media (max-width:839px) {
+  .saved-queries> div {
+    margin-left: 0px;
+  }
 }
+
+.close-btn {
+  position: absolute;
+  width: 0.3em;
+  height: 1.5em;
+  background: #9e9e9e;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  font-size: 70%;
+  top: 0.5em;
+  right: 1em;
+  cursor: pointer;
 }
+
+.close-btn:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.3em;
+  height: 1.5em;
+  background: #9e9e9e;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.select-btn {
+  height: 1.5em;
+  width: 1.5em;
+  display: block;
+  top: 0.4em;
+  right: 3em;
+  position: absolute;
+  cursor: pointer;
+}
+
+.select-btn:after,
+.select-btn:before {
+  content: '';
+  height: 17px;
+  width: 4px;
+  display: block;
+  background: #9e9e9e;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+
+.select-btn:before {
+  height: 10px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  top: 6px;
+  left: 13px;
+}
+
+
+.mdl-layout__content div{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
